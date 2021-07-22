@@ -11,7 +11,7 @@ with open('requirements.txt') as fin:
 
 setuptools.setup(
 
-    name="NAME",  # Replace with your username
+    name="pyutils",  # Replace with your username
 
     version="1.0.0",
 
@@ -19,7 +19,7 @@ setuptools.setup(
 
     author_email="thanhhungqb@gmail.com",
 
-    description="DESC",
+    description="Common utilities functions/classes",
 
     long_description=long_description,
 
@@ -31,6 +31,5 @@ setuptools.setup(
 
     packages=setuptools.find_packages(),
 
-    python_requires='>=3.6',
-
+    python_requires='>=3.8',
 )
