@@ -8,3 +8,9 @@ scipy>=1.5.4
 matplotlib>=3.3.2
 
 scikit-learn>=0.23.2
+
+# google drive apps
+# need https://developers.google.com/workspace/guides/create-credentials
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
