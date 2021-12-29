@@ -8,6 +8,7 @@ import time
 from pathlib import Path
 
 import click
+import gspread
 import numpy as np
 import pandas as pd
 import sklearn
@@ -1139,6 +1140,38 @@ def write_config_json(**config):
     with open(config['cp'] / json_name, 'w') as fw:
         json.dump(to_json_writeable(config), fw, indent=2)
     return config
+
+
+# some map function
+def json_2_df(js, **kw):
+    # js in form of json or json file or str
+    # json should be in form that can make dataframe
+    if Path(js).is_file():
+        with open(js) as f:
+            js = json.load(f)
+    elif isinstance(js, str):
+        js = json.loads(js)
+
+    return pd.DataFrame(js)
+
+
+def df_2_gs(df,
+            gsheet_id=None,
+            sheet_name='margin',
+            sa_file='/home/hung/.config/gspread/service_account.json',
+            **kw):
+    gc = gspread.service_account(filename=sa_file)
+    wb = gc.open_by_key(gsheet_id)
+    ws = wb.worksheet(sheet_name)
+    ws.clear()
+
+    to_write = [df.columns.values.tolist()] + df.values.tolist()
+    ws.update(to_write)
+
+
+def json_2_gs(**kw):
+    df = json_2_df(**kw)
+    df_2_gs(df=df, **kw)
 
 
 # ============================ END OF PIPE =================================
