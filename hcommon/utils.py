@@ -1165,12 +1165,19 @@ def df_2_gs(df,
     ws = wb.worksheet(sheet_name)
     ws.clear()
 
+    df = df.fillna("")
     to_write = [df.columns.values.tolist()] + df.values.tolist()
+    to_write = [[to_json_writeable(o) for o in row] for row in to_write]
     ws.update(to_write)
 
 
 def json_2_gs(**kw):
     df = json_2_df(**kw)
+    df_2_gs(df=df, **kw)
+
+
+def xls_2_gs(df, **kw):
+    df = pd.read_excel(df)
     df_2_gs(df=df, **kw)
 
 
