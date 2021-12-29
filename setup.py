@@ -13,7 +13,7 @@ setuptools.setup(
 
     name="pyutils",  # Replace with your username
 
-    version="1.0.1",
+    version="1.0.2",
 
     author="Hung",
 
