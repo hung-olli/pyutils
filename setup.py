@@ -13,7 +13,7 @@ setuptools.setup(
 
     name="pyutils",  # Replace with your username
 
-    version="1.0.2",
+    version="1.0.3",
 
     author="Hung",
 
@@ -31,5 +31,5 @@ setuptools.setup(
 
     packages=setuptools.find_packages(),
 
-    python_requires='>=3.8',
+    python_requires='>=3.7',
 )

@@ -303,6 +303,20 @@ def map_str_list_to_type(str_lst, dtype=float):
     return f
 
 
+def get_file_rec_i(path_or_list, **kwargs):
+    """
+    Get all files in folder/list of folders, ...
+    return list (flat) of files
+    """
+    if isinstance(path_or_list, (str, Path)):
+        files = get_file_rec(path_or_list)
+    else:
+        files = []
+        for o in path_or_list:
+            files.extend(get_file_rec_i(o))
+    return files
+
+
 def get_file_rec(path):
     """
     Get all file recursive
